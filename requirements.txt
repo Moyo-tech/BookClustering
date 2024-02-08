@@ -1,0 +1,9 @@
+bs4
+beautifulsoup4
+requests
+scikit-learn
+umap-learn
+keras
+tensorflow
+python-unsplash
+pytesseract
