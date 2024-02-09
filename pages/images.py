@@ -14,7 +14,7 @@ from sklearn.preprocessing import Normalizer
 UNSPLASH_ACCESS_KEY = st.secrets["images_api_key"]
 
 
-def fetch_images(query, count=10):
+def fetch_images(query, count=20):
     """Fetch images based on the query from the Unsplash API."""
     url = f"https://api.unsplash.com/search/photos/?query={query}&client_id={UNSPLASH_ACCESS_KEY}&per_page={count}"
     response = requests.get(url)
@@ -62,14 +62,13 @@ st.title("Image Clustering from Unsplash")
 st.write("Enter a search query to fetch and cluster images based on their content or text descriptions.")
 
 query = st.text_input("Enter search query:", placeholder="e.g., headphones, cup, bag", help="This field is required.")
-num_images = st.slider("Number of images to fetch:", 1, 20, 10)
 num_clusters = st.slider("Number of clusters:", 2, 10, 3)
 use_text_clustering = st.checkbox("Cluster by Text Description")
 
 if query: # Check if query is not empty
     if st.button("Scrape and Cluster Images"):
         # Fetch images and descriptions based on the query
-        image_urls, descriptions = fetch_images(query, num_images)
+        image_urls, descriptions = fetch_images(query)
         # Download the fetched images
         download_images(image_urls)
         # Cluster the images based on their content or descriptions
@@ -114,5 +113,4 @@ if query: # Check if query is not empty
                 
 else: 
     st.warning("Please enter a search query to fetch images.")
-
 
