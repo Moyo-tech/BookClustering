@@ -7,9 +7,3 @@ keras
 tensorflow
 python-unsplash
 pytesseract
-numpy
-pandas
-Pillow
-torchvision
-transformers
-torch
